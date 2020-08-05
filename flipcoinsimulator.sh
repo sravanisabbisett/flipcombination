@@ -4,6 +4,7 @@ head=1
 tail=0
 num=1
 num1=1
+num2=1
 randomCheck=$(( RANDOM%2 ))
 if [ $randomCheck -eq $head ]
 then
@@ -78,4 +79,74 @@ TT=$(echo | awk '{print '$count6/$len1*100'}')
 echo "winning percentage for combination TT" $TT
 
 array2=($HH $HT $TH $TT)
+echo ${array2[@]}
+while [ $num2 -le 20 ]
+do
+   var=$(( RANDOM%2))
+   var1=$(( RANDOM%2))
+   var2=$(( RANDOM%2))
+   if [[ $var -eq 1 && $var1 -eq 1 && $var2 -eq 1 ]]
+   then
+      coin="HHH"
+      count7=$(( $count7+1 ))
+   elif [[ $var -eq 1 && $var1 -eq 1 && $var2 -eq 0 ]]
+   then
+      coin="HHT"
+      count8=$(( $count8+1 ))
+   elif [[ $var -eq 1 && $var1 -eq 0 && $var2 -eq 1 ]]
+   then
+      coin="HTH"
+      count9=$(( $count9+1 ))
+   elif [[ $var -eq 0 && $var1 -eq 1 && $var2 -eq 1 ]]
+   then
+      coin="THH"
+      count10=$(( $count10+1 ))
+   elif [[ $var -eq 1 && $var1 -eq 0 && $var2 -eq 0 ]]
+   then
+      coin="HTT"
+      count11=$(( $count11+1 ))
+   elif [[ $var -eq 0 && $var1 -eq 1 && $var2 -eq 0 ]]
+   then
+      coin="THT"
+      count12=$(( $count12+1 ))
+   elif [[ $var -eq 0 && $var1 -eq 0 && $var2 -eq 1 ]]
+   then
+      coin="TTH"
+      count13=$(( $count13+1 ))
+   else [[ $var -eq 0 && $var1 -eq 0 && $var2 -eq 0 ]]
+      coin="TTT"
+      count14=$(( $count14+1 ))
+   fi
+   triplet[$num2]=$coin
+   num2=$(( $num2+1 ))
+   echo ${triplet[@]}
+done
+
+len2=${#triplet[@]}
+
+HHH=$(echo | awk '{print '$count7/$len2*100'}')
+echo "winning percentage for combination HHH" $HHH
+
+HHT=$(echo | awk '{print '$count8/$len2*100'}')
+echo "winning percentage for combination HHT" $HHT
+
+HTH=$(echo | awk '{print '$count9/$len2*100'}')
+echo "winning percentage for combination HTH" $HTH
+
+THH=$(echo | awk '{print '$count10/$len2*100'}')
+echo "winning percentage for combination THH" $THH
+
+HTT=$(echo | awk '{print '$count11/$len2*100'}')
+echo "winning percentage for combination HTT" $HTT
+
+THT=$(echo | awk '{print '$count12/$len2*100'}')
+echo "winning percentage for combination THT" $THT
+
+TTH=$(echo | awk '{print '$count13/$len2*100'}')
+echo "winning percentage for combination TTH" $TTH
+
+TTT=$(echo | awk '{print '$count14/$len2*100'}')
+echo "winning percentage for combination TTT" $TTT
+
+array2=($HHH $HHT $HTH $THH $HTT $THT $TTH $TTT)
 echo ${array2[@]}
