@@ -148,5 +148,41 @@ echo "winning percentage for combination TTH" $TTH
 TTT=$(echo | awk '{print '$count14/$len2*100'}')
 echo "winning percentage for combination TTT" $TTT
 
-array2=($HHH $HHT $HTH $THH $HTT $THT $TTH $TTT)
+array3=($HHH $HHT $HTH $THH $HTT $THT $TTH $TTT)
+echo ${array3[@]}
+
 echo ${array2[@]}
+length=${#array2[@]}
+for ((i=0; i<$length; i++ ))
+do
+   for ((j=$(( $i+1 )); j<$length; j++ ))
+   do
+      if [ ${array2[i]} -gt ${array2[j]} ]
+      then
+         temp=${array2[i]}
+         array2[$i]=${array2[j]}
+         array2[$j]=$temp
+      fi
+   done
+done
+
+length2=${#array3[@]}
+for ((i=0; i<$length2; i++ ))
+do
+   for ((j=$(( $i+1 )); j<$length2; j++ ))
+   do
+      if [ ${array3[i]} -gt ${array3[j]} ]
+      then
+         temp=${array3[i]}
+         array3[$i]=${array3[j]}
+         array3[$j]=$temp
+      fi
+   done
+done
+
+echo "singlet of winning percentage: " ${array1[@]}
+echo "doublet cobination of winning percentage: " ${array2[@]}
+echo "tripet combination of winning percentage: "${array3[@]}
+
+
+
